@@ -5,12 +5,13 @@ namespace MidiControl
 {
     public class MIDIFeedback
     {
-        public static readonly IEnumerable<string> FeedBackDevices = new List<string> { "APC MINI", "Akai APC40", "Launchpad Mini", "Launchpad MK2", "Launchpad", "MIDIOUT2 (Launchkey Mini)"};
+        public static readonly IEnumerable<string> FeedBackDevices = new List<string> { "APC MINI", "APC MINI MK2", "Akai APC40", "Launchpad Mini", "Launchpad MK2", "Launchpad", "MIDIOUT2 (Launchkey Mini)"};
 
         private enum Devices
         {
             NONE,
             APC_MINI,
+            APC_MINI_MK2,
             Launchpad_Mini,
             APC40,
             Launchpad_MK2,
@@ -33,6 +34,11 @@ namespace MidiControl
                 {
                     MidiOutdeviceFeedback = entry.Value;
                     deviceType = Devices.APC_MINI;
+                }
+                else if (MidiOut.DeviceInfo(entry.Value.device).ProductName == "APC MINI MK2" && keybind.Mididevice == "APC MINI MK2")
+                {
+                    MidiOutdeviceFeedback = entry.Value;
+                    deviceType = Devices.APC_MINI_MK2;
                 }
                 else if (MidiOut.DeviceInfo(entry.Value.device).ProductName == "Akai APC40" && keybind.Mididevice == "Akai APC40")
                 {
@@ -68,6 +74,9 @@ namespace MidiControl
             switch (deviceType)
             {
                 case Devices.APC_MINI:
+                case Devices.APC_MINI_MK2:
+                    me = new NoteOnEvent(0, channel, note, 21, 0);
+                    break;
                 case Devices.APC40:
                     me = new NoteOnEvent(0, channel, note, 01, 0);
                     break;
@@ -94,6 +103,9 @@ namespace MidiControl
             switch(deviceType)
             {
                 case Devices.APC_MINI:
+                case Devices.APC_MINI_MK2:
+                    me = new NoteOnEvent(0, channel, note, 09, 0);
+                    break;
                 case Devices.APC40:
                     me = new NoteOnEvent(0, channel, note, 00, 0);
                     break;
@@ -119,6 +131,9 @@ namespace MidiControl
             switch (deviceType)
             {
                 case Devices.APC_MINI:
+                case Devices.APC_MINI_MK2:
+                    me = new NoteOnEvent(0, channel, note, 13, 0);
+                    break;
                 case Devices.APC40:
                     me = new NoteOnEvent(0, channel, note, 02, 0);
                     break;
