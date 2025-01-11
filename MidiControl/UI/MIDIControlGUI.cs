@@ -394,7 +394,7 @@ namespace MidiControl {
 		// processing
 		private void EditEntry(string index) {
 			if(conf.Config.TryGetValue(index, out KeyBindEntry value)) {
-                using var addEntry = new EntryGUI(index, value);
+                using var addEntry = new CustomFeeGui(index, value);
                 addEntry.StartPosition = FormStartPosition.CenterParent;
                 if (addEntry.ShowDialog() == DialogResult.OK)
                     ReloadEntries();
