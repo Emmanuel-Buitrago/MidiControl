@@ -35,7 +35,7 @@ namespace MidiControl
                     MidiOutdeviceFeedback = entry.Value;
                     deviceType = Devices.APC_MINI;
                 }
-                else if (MidiOut.DeviceInfo(entry.Value.device).ProductName == "APC MINI MK2" && keybind.Mididevice == "APC MINI MK2")
+                else if ((MidiOut.DeviceInfo(entry.Value.device).ProductName == "APC mini mk2" || MidiOut.DeviceInfo(entry.Value.device).ProductName == "MIDIIN2") && (keybind.Mididevice == "APC mini mk2" || keybind.Mididevice == "MIDIIN2"))
                 {
                     MidiOutdeviceFeedback = entry.Value;
                     deviceType = Devices.APC_MINI_MK2;
