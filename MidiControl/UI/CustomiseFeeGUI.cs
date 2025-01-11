@@ -18,22 +18,22 @@ namespace MidiControl
             this.options = options;
             InitializeComponent();
             Icon = Properties.Resources.icon;
-            TxtBoxOBSIP.Text = options.options.Ip;
-            TxtBoxOBSPassword.Text = options.options.Password;
+            //TxtBoxOBSIP.Text = options.options.Ip;
+            //TxtBoxOBSPassword.Text = options.options.Password;
 
             List<string> midiIn = MIDIListener.GetInstance().midiInStringOptions;
             foreach (string inInterface in midiIn)
             {
-                ChkCmbBoxMIDI.Items.Add(inInterface);
+                //ChkCmbBoxMIDI.Items.Add(inInterface);
                 if(options.options.MIDIInterfaces.Contains(inInterface))
                 {
-                    ChkCmbBoxMIDI.SetItemChecked(ChkCmbBoxMIDI.Items.IndexOf(inInterface), true);
+                    //ChkCmbBoxMIDI.SetItemChecked(ChkCmbBoxMIDI.Items.IndexOf(inInterface), true);
                 }
             }
 
-            txtBoxDelay.Text = options.options.Delay.ToString();
+            //txtBoxDelay.Text = options.options.Delay.ToString();
 
-            txtBoxTwitchLogin.Text = options.options.TwitchLogin;
+            //txtBoxTwitchLogin.Text = options.options.TwitchLogin;
 
 			chkStartToTray.Checked = options.options.StartToTray;
 			chkAlwaysOnTop.Checked = options.options.AlwaysOnTop;
@@ -47,23 +47,23 @@ namespace MidiControl
 			cboTheme.SelectedIndex = options.options.Theme;
 
             // select the category
-            if(treeView1.Nodes.Find(tab, true).Length == 0)
-                tab = "general";
-            treeView1.SelectedNode = treeView1.Nodes.Find(tab, true)[0];
+            //if(treeView1.Nodes.Find(tab, true).Length == 0)
+            //    tab = "general";
+            //treeView1.SelectedNode = treeView1.Nodes.Find(tab, true)[0];
 			
 			// prepare the panels
-            pnlGeneral.Location = new System.Drawing.Point(148, 12);
+            //pnlGeneral.Location = new System.Drawing.Point(148, 12);
             pnlInterface.Location = new System.Drawing.Point(148, 12);
 
             pnlInterface.Visible = false;
 
             panels = new List<Panel>() {
-                pnlGeneral,
+                //pnlGeneral,
                 pnlInterface
             };
 
 			// show the correct panel
-			OptionsCategoryChanged(this, new TreeNodeMouseClickEventArgs(treeView1.SelectedNode, MouseButtons.Left, 1, 0, 0));
+			//OptionsCategoryChanged(this, new TreeNodeMouseClickEventArgs(treeView1.SelectedNode, MouseButtons.Left, 1, 0, 0));
 
 			// theme the window
 			ThemeSupport.ThemeOtherWindow(options.options.Theme, this);
@@ -71,18 +71,18 @@ namespace MidiControl
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            options.options.Ip = TxtBoxOBSIP.Text;
-            options.options.Password = TxtBoxOBSPassword.Text;
+            //options.options.Ip = TxtBoxOBSIP.Text;
+            //options.options.Password = TxtBoxOBSPassword.Text;
 
-            CheckedListBox.CheckedItemCollection items = ChkCmbBoxMIDI.CheckedItems;
+            //CheckedListBox.CheckedItemCollection items = ChkCmbBoxMIDI.CheckedItems;
             options.options.MIDIInterfaces.Clear();
-            foreach (object item in items)
-            {
-                options.options.MIDIInterfaces.Add(item.ToString());
-            }
+            //foreach (object item in items)
+            //{
+            //    options.options.MIDIInterfaces.Add(item.ToString());
+            //}
             try
             {
-                options.options.Delay = Int32.Parse(txtBoxDelay.Text);
+                //options.options.Delay = Int32.Parse(txtBoxDelay.Text);
             }
             catch (FormatException)
             {
@@ -131,12 +131,12 @@ namespace MidiControl
             });
 
             await Task.WhenAll(taskServer, taskBrowser);
-            txtBoxTwitchLogin.Text = await taskServer;
+            //txtBoxTwitchLogin.Text = await taskServer;
         }
 
         private void BtnRequestTwitchLogout_Click(object sender, EventArgs e)
         {
-            txtBoxTwitchLogin.Text = "";
+            //txtBoxTwitchLogin.Text = "";
 
             options.options.TwitchLogin = "";
             options.options.TwitchToken = "";
